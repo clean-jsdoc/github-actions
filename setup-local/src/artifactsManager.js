@@ -1,4 +1,4 @@
-const artifact = require('@actions/artifact');
+const { default: artifactClient } = require('@actions/artifact');
 const core = require('@actions/core');
 
 class ArtifactsManager {
@@ -10,7 +10,6 @@ class ArtifactsManager {
    * @returns {Promise<artifact.UploadResponse>} Response of the upload operation
    */
   static async uploadArtifacts(artifactName, files, rootFolder) {
-    const artifactClient = artifact.create();
     const response = await artifactClient.uploadArtifact(
       artifactName,
       files,

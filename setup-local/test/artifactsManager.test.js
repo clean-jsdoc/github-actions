@@ -1,20 +1,14 @@
 const chai = require('chai');
 const sinon = require('sinon');
-const artifact = require('@actions/artifact');
+const { default: artifactClient } = require('@actions/artifact');
 const core = require('@actions/core');
 const ArtifactsManager = require('../src/artifactsManager');
 
 const { expect } = chai;
 
 describe('Artifacts Handling', () => {
-  let artifactClient;
-
   beforeEach(() => {
-    artifactClient = {
-      uploadArtifact: sinon.stub().returns('Response'),
-    };
-
-    sinon.stub(artifact, 'create').returns(artifactClient);
+    sinon.stub(artifactClient, 'uploadArtifact').returns('Response');
     sinon.stub(core, 'info');
   });
 
